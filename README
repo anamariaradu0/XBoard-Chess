@@ -1,0 +1,61 @@
+Ana-Maria Radu, 324CA
+Victor-Alexandru Bivolaru, 324CA
+Madalin Dobrila, 324CA
+
+TEAM: Alexa_play_chess
+
+I. COMPILING INSTRUCTIONS:
+build
+run
+clean
+
+II. DETAILS ABOUT PROJECT STRUCTURE:
+Our project is divided by functionalities:
+Algo_Utils.h - Auxiliary functions pertaining to the MiniMax algorithm, such as listing all possible
+	moves for a given color, checking if the king is in danger, computing scores for
+	both the engine's and the enemy's possible moves, picking the best next move
+	accordingly.
+Board_Utils.h - Auxiliary functions pertaining to internal changes, special moves,
+	validating moves, some printing functions.
+Cell.h - Information about a singular cell from the board.
+Eval_Board.h - Evaluates the board after performing a possible move in order to
+	determine the best scenario. These evaluations are based on
+	values assigned to each cell on the board and depend on
+	piece type, piece color and piece position.
+
+Features:
+	1. As far as moving pieces on the board goes, all moves are correct in the sense
+	that they respect the type of each piece, that only the horse can jump over other
+	pieces, not moving over a position already occupied by the engine and so on.
+
+	2. The engine can recognise and interpret pawn promotions and castlings.
+
+	3. Each next move is determined using a MINIMAX algo that assigns values to each
+	position on the board based on piece type, piece position and piece color and
+	computes a total sum of those values for each possible board. The depth is
+	customisable (we picked a deph of 2).
+	   References here:
+	https://www.freecodecamp.org/news/simple-chess-ai-step-by-step-1d55a9266977/
+
+Bugs: (!!!!!!!!!!)
+	1. Most of our matches end in "illegal move" because we didn't manage to
+	implement protecting the king from a check. As of now, our code doesn't
+	recognise dangerous circumstances and doesn't prioritise either moving
+	the king or protecting the king during a check.
+
+III. DETAILS ABOUT THE ALGORITHM
+The best move is chosen with a simple 2 layers deep min-max algorithm. We attributed
+certain float values to each piece in a certain position on the board. For example,
+a white pawn situated at A5 is worth 0.5, whereas a black pawn situated at A7 is worth 0.
+All of these values are found in "Eval_Board.H". The worth of each new game board is
+computed by summing all the partial values of every piece.
+This is a board-analisys type of algorithm, as it generates a new board for each situation and
+computes its score by iterating through it.
+
+IV. TEAM WORK
+Initial roles:
+Victor - MiniMax
+Ana - game flow, cosmetsation
+Madalin - auxiliaries
+Even though we initially split the work, we soon came to realise that we had better results
+by debugging together, so most code is written in collaboration.
